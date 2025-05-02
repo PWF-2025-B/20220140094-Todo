@@ -9,6 +9,8 @@
 ## 3. Todo Edited
 ![Alt text](screenshot/tugas6/Screenshotedited.png)
 
+![alt text](screenshot/tugas6/Screenshotedited2.png)
+
 ## 4. Todo Deleted
 ![Alt text](screenshot/tugas6/Screenshottododelete.png)
 

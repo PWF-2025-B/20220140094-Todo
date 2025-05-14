@@ -33,18 +33,26 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-6 py-3">Title</th>
+                                <th scope="col" class="px-6 py-3">Category</th>
                                 <th scope="col" class="px-6 py-3">Status</th>
                                 <th scope="col" class="px-6 py-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($todos as $todo)
-                            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
+                            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                 <td class="px-6 py-4 font-medium text-white dark:text-gray-900">
                                     <a href="{{ route('todo.edit', $todo->id) }}" class="hover:underline text-xs">
                                         {{ $todo->title }}
                                     </a>
                                 </td>
+
+                                <td class="px-6 py-4">
+                                    @if ($todo->category)
+                                    {{ $todo->category->title }}
+                                    @endif
+                                </td>
+
                                 <td class="px-6 py-4">
                                     @if (!$todo->is_done)
                                     <span class="inline-flex items-center bg-red-100 text-red-800 text-sm font-medium px-2.5 py-0.5 rounded-sm dark:bg-red-900 dark:text-red-300">
@@ -56,7 +64,8 @@
                                     </span>
                                     @endif
                                 </td>
-                                <td class="px-6 py-4 space-x-2">
+
+                                <td class="px-6 py-4">
                                     <div class="flex items-center gap-2">
                                         @if (!$todo->is_done)
                                         <form action="{{ route('todo.complete', $todo) }}" method="POST">
@@ -81,11 +90,11 @@
                                             </button>
                                         </form>
                                         @endif
+
                                         <form action="{{ route('todo.destroy', $todo) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="text-red-600 dark:text-red-400 whitespace-nowrap hover:underline ms-2">
-
                                                 Delete
                                             </button>
                                         </form>
@@ -93,8 +102,8 @@
                                 </td>
                             </tr>
                             @empty
-                            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-                                <td colspan="3" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+                            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                <td colspan="4" class="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
                                     No data available
                                 </td>
                             </tr>

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Models\Todo;
 use App\Models\User;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/todo/{todo}', [TodoController::class, 'destroy'])->name('todo.destroy');
     Route::delete('/todo', [TodoController::class, 'destroyCompleted'])->name('todo.deleteallcompleted');
+
+    Route::resource('category', CategoryController::class)->only(['index', 'create', 'store', 'destroy', 'edit', 'update']);
 });
 
 

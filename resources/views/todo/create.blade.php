@@ -20,6 +20,20 @@
                             <x-input-error class="mt-2" :messages="$errors-> get('title')" />
                         </div>
 
+                        <div class="mb-6">
+                            <x-input-label for="category" :value="__('Category')" />
+                            <x-select name="category_id" id="category" class="block w-full mt-1 rounded-md border-gray-300 dark:bg-gray-800 dark:border-gray-500 dark:text-gray-300">
+                                <option value="" disabled selected>{{ __('Select a category') }}</option>
+                                @foreach ($categories as $category)
+                                <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->title }}
+                                </option>
+                                @endforeach
+                            </x-select>
+                            <x-input-error class="mt-2" :messages="$errors->get('category_id')" />
+                        </div>
+
+
                         <div class="flex items-center gap-4">
                             <x-primary-button>
                                 {{ __('Save') }}

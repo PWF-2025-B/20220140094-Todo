@@ -12,7 +12,8 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::withCount('todos')->get();
+        $categories = Category::with('todos')->where('user_id', Auth::id())->get();
+        // $categories = Category::withCount('todos')->get();
         return view('category.index', compact('categories'));
     }
 
